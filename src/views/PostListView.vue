@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="posts-wrapper">
-            <router-link v-for="post in getPosts" :key="post.id" :to='"/posts/" + post.id'>
+            <router-link v-for="post in posts" :key="post.id" :to='"/posts/" + post.id'>
                 <PostCard :post="post" />
             </router-link>
         </div>
@@ -24,7 +24,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getPosts'
+            'posts'
         ]),
 
     },

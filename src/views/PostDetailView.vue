@@ -1,14 +1,14 @@
 <template>
     <div>
-        <div class="post-wrapper" v-if="getPost">
-            <div class="author-credentials" v-if="getAuthor">
-                <h3><span class="highlight">{{ getAuthor.name }}</span> - (@{{ getAuthor.username }})</h3>
-                <h4>{{ getAuthor.email }}</h4>
-                <h4>{{ getAuthor.phone }}</h4>
+        <div class="post-wrapper" v-if="post">
+            <div class="author-credentials" v-if="author">
+                <h3><span class="highlight">{{ author.name }}</span> - (@{{ author.username }})</h3>
+                <h4>{{ author.email }}</h4>
+                <h4>{{ author.phone }}</h4>
             </div>
 
-            <h1>{{ getPost.title }}</h1>
-            <p class="content">{{ getPost.body }}</p>
+            <h1>{{ post.title }}</h1>
+            <p class="content">{{ post.body }}</p>
 
         </div>
     </div>
@@ -24,8 +24,8 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getPost',
-            'getAuthor'
+            'post',
+            'author'
         ]),
     },
     methods: {
@@ -35,8 +35,8 @@ export default {
         ])
     },
     watch: {
-        getPost() {
-            this.fetchAuthor(this.getPost.userId)
+        post(val) {
+            this.fetchAuthor(val.userId)
         }
     },
     created() {

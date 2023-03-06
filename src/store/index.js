@@ -12,7 +12,7 @@ export default new Vuex.Store({
     author:{}
   },
   getters: {
-    getPosts: (state) =>{
+    posts: (state) =>{
       return state.posts.map(post => {
         post.author = state.authors.find(author => {
           return post.userId === author.id
@@ -20,13 +20,13 @@ export default new Vuex.Store({
         return post
       })
     },
-    getPost: (state) =>{
+    post: (state) =>{
       return state.post
     },
-    getAuthors: (state) =>{
+    authors: (state) =>{
       return state.authors
     },
-    getAuthor: (state) =>{
+    author: (state) =>{
       return state.author
     },
 

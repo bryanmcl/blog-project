@@ -8,13 +8,11 @@
     </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'PostCard',
     data() {
         return {
-            // author: {}
         }
     },
     props: {
@@ -27,29 +25,6 @@ export default {
             }
             return text
         }
-    },
-    computed: {
-        ...mapGetters([
-            'getAuthor',
-            'getPost'
-        ]),
-        author() {
-            this.fetchAuthor()
-            return this.getAuthor
-        }
-    },
-    methods: {
-        ...mapActions([
-            'fetchPost',
-            'fetchAuthor'
-        ]),
-
-    },
-    watch: {
-    },
-    created() {
-        // this.fetchPost(this.post.id)
-        // this.fetchAuthor()
     }
 }
 </script>
