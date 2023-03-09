@@ -4,7 +4,7 @@ let url = ''
 
 jest.mock("axios", () => ({
     // get: () => new Promise(res => res({ data: 'data' }) )
-    get: (_url, _body) => new Promise(res => {
+    get: (_url) => new Promise(res => {
         url = _url
         res({data: 'data'})
     })
