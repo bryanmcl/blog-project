@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import PostListView from "@/views/PostListView.vue"
+import PostCard from "@/components/PostCard.vue"
 import { createLocalVue, mount } from "@vue/test-utils"
 
 const localVue = createLocalVue()
@@ -41,6 +42,7 @@ describe('PostListView.vue', () => {
                     email: "user2@april.biz",
                 }
             ],
+            error: ''
         }
 
         actions = {
@@ -56,7 +58,8 @@ describe('PostListView.vue', () => {
                   })
                   return post
                 })
-              }
+              },
+            error: state => state.error
         }
         
         store = new Vuex.Store({
@@ -122,12 +125,28 @@ describe('PostListView.vue', () => {
             store, localVue,
             stubs: ['router-link']
         })
+        expect(wrapper.findAllComponents(PostCard).length).toBe(2)
         const posts = wrapper.get("[data-test = 'posts']")
         expect(posts.text()).toContain(state.posts[0].title)
         expect(posts.text()).toContain(state.posts[0].body)
         expect(posts.text()).toContain(state.authors[0].name)
         expect(posts.text()).toContain(state.authors[0].username)
 
+    })
+
+    it("render postllist error", ()=>{
+        store.replaceState({
+            posts: [],
+            authors: [],
+            error: 'Error'
+        })
+        const wrapper = mount(PostListView, {
+            store, localVue,
+            stubs: ['router-link']
+        })
+        const posts = wrapper.find('.posts-wrapper')
+        expect(posts.exists()).toBe(false)
+        expect(wrapper.find('.error-msg').text()).toContain('Error')
     })
     
 })

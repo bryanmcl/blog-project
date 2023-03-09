@@ -42,7 +42,8 @@ describe('getters', () => {
             name: "User 1",
             username: "user1",
             email: "user1@april.biz",
-        }
+        },
+        error: 'Request failed with status code 404'
     }
     it('getters', ()=>{
         expect(main.getters.authors(state)).toEqual([
@@ -100,6 +101,8 @@ describe('getters', () => {
             title: "Test title 1",
             body: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
         })
+
+        expect(main.getters.error(state)).toEqual('Request failed with status code 404')
         
     })
 })

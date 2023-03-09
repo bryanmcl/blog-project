@@ -35,8 +35,10 @@ describe('mutations', () => {
             title: "Test title 3",
             body: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
         },
-
     ]
+
+    const error = 'Request failed with status code 404'
+
     it('set authors', () => {
 
         const state = {
@@ -128,5 +130,16 @@ describe('mutations', () => {
         })
     })
 
+    it('set error', () => {
+
+        const state = {
+            error:''
+        }
+        main.mutations.setError(state, error)
+
+        expect(state).toEqual({
+            error : 'Request failed with status code 404'
+        })
+    })
 
   })

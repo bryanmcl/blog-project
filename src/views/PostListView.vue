@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="posts-wrapper" data-test="posts">
+        <div class="posts-wrapper" data-test="posts" v-if="!error">
             <router-link v-for="post in posts" :key="post.id" :to='"/posts/" + post.id'>
                 <PostCard :post="post" />
             </router-link>
-            <!-- <div v-for="post in posts" :key="post.id">
-                <PostCard :post="post" />
-            </div> -->
+        </div>
+        <div v-else class="error-msg">
+            {{ error }}
         </div>
     </div>
 </template>
@@ -27,7 +27,8 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'posts'
+            'posts',
+            'error'
         ]),
 
     },
@@ -58,5 +59,12 @@ export default {
 .posts-wrapper a {
     text-decoration: none;
     color: initial;
+}
+
+.error-msg {
+    color: crimson;
+    text-align: center;
+    padding: 1rem;
+    background-color: pink;
 }
 </style>

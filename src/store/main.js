@@ -5,7 +5,8 @@ export const state = {
     posts: [],
     authors: [],
     post: null,
-    author: null
+    author: null,
+    error: ''
   }
 
   export const getters = {
@@ -26,6 +27,9 @@ export const state = {
     author: (state) =>{
       return state.author
     },
+    error: (state) =>{
+      return state.error
+    }
 
   }
   export const mutations = {
@@ -41,6 +45,9 @@ export const state = {
     setAuthor(state, author) {
       state.author = author
     },
+    setError(state, error){
+      state.error = error
+    }
   }
   export const actions = {
     fetchAuthors: ({ commit }) => {
@@ -49,11 +56,19 @@ export const state = {
       .then(response => {
         commit('setAuthors', response.data)
       })
+      .catch(error =>{
+        console.log(error.message)
+        commit('setError', error.message)
+      })
     },
     fetchPosts: ({ commit }) => {
-      axios.get("https://jsonplaceholder.typicode.com/posts")
+      axios.get("https://jsonplaceholder.typicode.cm/posts")
       .then(response => {
         commit('setPosts', response.data)
+      })
+      .catch(error =>{
+        console.log(error.message)
+        commit('setError', error.message)
       })
     },
     fetchPost: ({ commit }, postId) => {
@@ -61,11 +76,19 @@ export const state = {
       .then(response => {
         commit('setPost', response.data)
       })
+      .catch(error =>{
+        console.log(error.message)
+        commit('setError', error.message)
+      })
     },
     fetchAuthor: ({ commit }, authorId) => {
         axios.get("https://jsonplaceholder.typicode.com/users/" + authorId)
         .then(response => {
           commit('setAuthor', response.data)
+        })
+        .catch(error =>{
+          console.log(error.message)
+          commit('setError', error.message)
         })
     },
 

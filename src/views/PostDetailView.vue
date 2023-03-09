@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="post-wrapper" v-if="post">
+        <div class="post-wrapper" v-if="post && !error">
             <div class="author-credentials" v-if="author">
                 <h3><span class="highlight">{{ author.name }}</span> - (@{{ author.username }})</h3>
                 <h4>{{ author.email }}</h4>
@@ -10,7 +10,11 @@
             <h1>{{ post.title }}</h1>
             <p class="content">{{ post.body }}</p>
         </div>
-        <h1 v-else class="error-msg">Article not Found</h1>
+        <h1 v-else class="error-msg">
+            Error Occured
+            <br>
+            {{ error }}
+        </h1>
     </div>
 </template>
 <script>
@@ -25,7 +29,8 @@ export default {
     computed: {
         ...mapGetters([
             'post',
-            'author'
+            'author',
+            'error'
         ]),
     },
     methods: {

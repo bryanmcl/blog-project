@@ -33,7 +33,8 @@ describe("PostDetailView.vue", ()=>{
                 username: "user1",
                 email: "user1@april.biz",
                 phone: '123123'
-            }
+            },
+            error: ''
         }
 
         actions = {
@@ -43,7 +44,8 @@ describe("PostDetailView.vue", ()=>{
         
         getters = {
             post: state => state.post,
-            author: state => state.author
+            author: state => state.author,
+            error: state=> state.error
         }
         
         store = new Vuex.Store({
@@ -124,13 +126,14 @@ describe("PostDetailView.vue", ()=>{
     it("render post error", ()=>{
         store.replaceState({
             post: null,
-            author: null
+            author: null,
+            error: 'Request failed with status code 404'
         })
         const wrapper = mount(PostDetailView, {
             store, localVue, mocks
         })
         const post = wrapper.find('.post-wrapper')
         expect(post.exists()).toBe(false)
-        expect(wrapper.find('.error-msg').text()).toContain('Article not Found')
+        expect(wrapper.find('.error-msg').text()).toContain('Request failed with status code 404')
     })
 })
