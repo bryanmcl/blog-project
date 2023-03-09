@@ -121,14 +121,16 @@ describe("PostDetailView.vue", ()=>{
         expect(post).toContain(state.post.body)
     })
 
-    it("render author", ()=>{
+    it("render post error", ()=>{
+        store.replaceState({
+            post: null,
+            author: null
+        })
         const wrapper = mount(PostDetailView, {
             store, localVue, mocks
         })
-        const author = wrapper.find('.author-credentials').text()
-        expect(author).toContain(state.author.name)
-        expect(author).toContain(state.author.username)
-        expect(author).toContain(state.author.email)
-        expect(author).toContain(state.author.phone)
+        const post = wrapper.find('.post-wrapper')
+        expect(post.exists()).toBe(false)
+        expect(wrapper.find('.error-msg').text()).toContain('Article not Found')
     })
 })

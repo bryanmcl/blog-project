@@ -6,11 +6,12 @@
                 <h4>{{ author.email }}</h4>
                 <h4>{{ author.phone }}</h4>
             </div>
+            <!-- <h1 v-else class="error-msg">Author not Found</h1> -->
 
             <h1>{{ post.title }}</h1>
             <p class="content">{{ post.body }}</p>
-
         </div>
+        <h1 v-else class="error-msg">Article not Found</h1>
     </div>
 </template>
 <script>
@@ -67,5 +68,12 @@ export default {
 .content {
     margin-top: 1rem;
     text-align: justify;
+}
+
+.error-msg {
+    color: crimson;
+    text-align: center;
+    padding: 1rem;
+    background-color: pink;
 }
 </style>

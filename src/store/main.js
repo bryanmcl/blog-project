@@ -4,8 +4,8 @@ import axios from "axios"
 export const state = {
     posts: [],
     authors: [],
-    post: {},
-    author:{}
+    post: null,
+    author: null
   }
 
   export const getters = {
