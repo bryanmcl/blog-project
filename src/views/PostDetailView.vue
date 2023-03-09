@@ -6,7 +6,6 @@
                 <h4>{{ author.email }}</h4>
                 <h4>{{ author.phone }}</h4>
             </div>
-            <!-- <h1 v-else class="error-msg">Author not Found</h1> -->
 
             <h1>{{ post.title }}</h1>
             <p class="content">{{ post.body }}</p>
